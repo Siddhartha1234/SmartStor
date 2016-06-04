@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.example.hp.smartstor.MainActivity">
+
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Finding peers ....."
+       android:paddingTop="10dp"
+       android:gravity="center_horizontal"
+       android:textStyle="bold"/>
+
+      <ProgressBar
+          android:paddingTop="10dp"
+          android:layout_width="match_parent"
+          android:layout_height="40dp"
+          android:id="@+id/progressBar"
+          android:indeterminate="false"
+          style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+          />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginRight="90dp">
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_pause_black_24dp"
+            app:backgroundTint="#45d4f2"
+            android:tint="#fff"
+            android:onClick="searchpause"
+            android:layout_centerHorizontal="true"
+            />
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_clear_white_24dp"
+            android:layout_alignParentEnd="true"
+            app:backgroundTint="#45d4f2"
+            android:onClick="searchcancell"
+
+            />
+
+    </RelativeLayout>
+
+
+
+
+
+
+   <android.support.v7.widget.RecyclerView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/network_recycler"
+       android:layout_marginTop="20dp">
+   </android.support.v7.widget.RecyclerView>
+</LinearLayout>

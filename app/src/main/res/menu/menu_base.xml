@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_files"
+            android:icon="@drawable/ic_folder_black_24dp"
+            android:title="Files" />
+        <item
+            android:id="@+id/nav_peers"
+            android:icon="@drawable/ic_accessibility_black_24dp"
+            android:title="Find peers" />
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/ic_add_a_photo_black_24dp"
+            android:title="Take a Picture" />
+
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Gallery" />
+
+
+
+    </group>
+</menu>
