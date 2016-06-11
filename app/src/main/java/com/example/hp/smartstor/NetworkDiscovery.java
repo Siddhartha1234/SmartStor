@@ -1,25 +1,19 @@
 package com.example.hp.smartstor;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.TextHttpResponseHandler;
 
 import org.json.JSONArray;
@@ -30,7 +24,6 @@ import java.math.BigInteger;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.ByteOrder;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -167,7 +160,7 @@ public class NetworkDiscovery extends BaseActivity implements NetworkCardAdapter
     Context context;
     int i_max=255;
     static ProgressBar progressBar;
-    static clientAccessor client;
+    static clientSearch client;
 
 
     @Override
@@ -185,8 +178,9 @@ public class NetworkDiscovery extends BaseActivity implements NetworkCardAdapter
             for(int i=0;i<devices.size();i++)
             {
                 cardAdapter.items.add(devices.get(i));
-                recyclerView.setAdapter(cardAdapter);
+
             }
+            recyclerView.setAdapter(cardAdapter);
         }
 
 
@@ -208,8 +202,8 @@ public class NetworkDiscovery extends BaseActivity implements NetworkCardAdapter
     }
     public void setURL(String link)
     {
-        Toast.makeText(getApplicationContext(),"Reacher url changer fn",Toast.LENGTH_LONG).show();
-        url=link;
+        rooturl="http://"+link+":3000/";
+        url="http://"+link+":3000/upload/multipart";
     }
 
 
@@ -221,14 +215,14 @@ public class NetworkDiscovery extends BaseActivity implements NetworkCardAdapter
         int i=2 ;
 
         //String URL = "http://" + ip + String.valueOf(i) + ":3000/upload/multipart";
-        client = new clientAccessor("http://" + ip);
+        client = new clientSearch("http://" + ip);
 
         devinfo(client,i);
 
 
     }
 
-    public void  devinfo(final clientAccessor client, final int i)
+    public void  devinfo(final clientSearch client, final int i)
     {
 
         client.get(String.valueOf(i)+":3000/get-info", null, new TextHttpResponseHandler() {
@@ -252,7 +246,7 @@ public class NetworkDiscovery extends BaseActivity implements NetworkCardAdapter
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                    Toast.makeText(getApplicationContext(),responseString,Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(),responseString,Toast.LENGTH_LONG).show();
 
                     float x=(float) i/i_max;
                     int z=(int) (x *100);
@@ -270,7 +264,7 @@ public class NetworkDiscovery extends BaseActivity implements NetworkCardAdapter
     {
         try {
             JSONArray jsonArray = new JSONArray(response);
-            for (int i = 0; i < response.length(); i++) {
+            for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject data = jsonArray.getJSONObject(i);
                 String devicename = data.getString("devicename");
                 String deviceip = data.getString("ip");

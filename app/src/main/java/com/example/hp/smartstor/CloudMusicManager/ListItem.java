@@ -1,4 +1,4 @@
-package com.example.hp.smartstor;
+package com.example.hp.smartstor.CloudMusicManager;
 
 import android.graphics.Bitmap;
 import android.widget.ImageView;

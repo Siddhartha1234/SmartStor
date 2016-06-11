@@ -3,15 +3,16 @@ package com.example.hp.smartstor;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.hp.smartstor.CloudFileExplorer.CardAdapter;
+import com.example.hp.smartstor.CloudMusicManager.MusicActivity;
+
 public class MainActivity extends BaseActivity {
-    RecyclerView recyclerView;
-    GridLayoutManager gridLayoutManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,13 +20,8 @@ public class MainActivity extends BaseActivity {
         if (url == null) {
             setContentView(R.layout.activity_main_nopeers);
         } else {
-            setContentView(R.layout.activity_main);
-            recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-            recyclerView.setHasFixedSize(true);
-            gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
-            recyclerView.setLayoutManager(gridLayoutManager);
-            CardAdapter cardAdapter = new CardAdapter(getApplicationContext());
-            recyclerView.setAdapter(cardAdapter);
+            startActivity(new Intent(this, MusicActivity.class));
+
         }
     }
     public void connectpeer(View v)

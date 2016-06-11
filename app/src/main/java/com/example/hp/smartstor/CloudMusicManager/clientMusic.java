@@ -1,26 +1,26 @@
-package com.example.hp.smartstor;
+package com.example.hp.smartstor.CloudMusicManager;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.SyncHttpClient;
 
 /**
- * Created by hp on 5/26/2016.
+ * Created by hp on 6/9/2016.
  */
-public class clientAccessor {
+public class clientMusic {
+
         public   String BASE_URL=null;
-        public   AsyncHttpClient client = new AsyncHttpClient();
+        public AsyncHttpClient client = new AsyncHttpClient();
 
 
-    public clientAccessor(String URL)
-    {
-       this.BASE_URL=URL;
-        client.setMaxRetriesAndTimeout(0,100);
-        client.setTimeout(100);
-        client.setUserAgent("sid");
-    }
+        public clientMusic(String URL)
+        {
+            this.BASE_URL=URL;
+            client.setUserAgent("sid");
+        }
 
-    public  void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+        public  void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
             client.get(getAbsoluteUrl(url), params, responseHandler);
         }
 
@@ -32,4 +32,4 @@ public class clientAccessor {
             return BASE_URL + relativeUrl;
         }
 
-}
+    }

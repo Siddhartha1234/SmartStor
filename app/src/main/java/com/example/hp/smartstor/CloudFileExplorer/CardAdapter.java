@@ -1,4 +1,4 @@
-package com.example.hp.smartstor;
+package com.example.hp.smartstor.CloudFileExplorer;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.hp.smartstor.CloudMusicManager.ListItem;
+import com.example.hp.smartstor.R;
 
 import java.util.ArrayList;
 import java.util.List;

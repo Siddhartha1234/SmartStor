@@ -29,17 +29,17 @@
             android:textSize="14sp"
             android:textStyle="bold"
             android:gravity="center_horizontal|center"
-            android:textColor="#1c1b1b"
+            android:textColor="#fff"
             android:shadowColor="#b0acac"
             android:shadowDx="1"
             android:shadowDy="1"
             android:shadowRadius="2"
             android:width="200dp"
-            android:background="#b0acac" />
+            android:background="#45d4f2" />
         <ImageView
             android:layout_width="25dp"
             android:layout_height="30dp"
-            android:layout_gravity="bottom|left"
+            android:layout_marginTop="110dp"
             android:layout_marginLeft="5dp"
             android:layout_marginBottom="4dp"
 

@@ -74,8 +74,8 @@ public class NetworkCardAdapter extends RecyclerView.Adapter<NetworkCardAdapter.
         public void onClick(View v)
         {
 
-            Toast.makeText(context,items.get(getAdapterPosition()).getDname()+"\n"+items.get(getAdapterPosition()).getDip(),Toast.LENGTH_LONG).show();
-            mcallback.setURL("http://"+items.get(getAdapterPosition()).getDip()+":3000/upload/multipart");
+            //Toast.makeText(context,items.get(getAdapterPosition()).getDname()+"\n"+items.get(getAdapterPosition()).getDip(),Toast.LENGTH_LONG).show();
+            mcallback.setURL(items.get(getAdapterPosition()).getDip());
         }
     }
 }

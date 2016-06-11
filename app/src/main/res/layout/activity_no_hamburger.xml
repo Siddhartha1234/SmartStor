@@ -4,13 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.hp.smartstor.MainActivity">
-    <TextView
+    tools:context="com.example.hp.smartstor.CloudMusicManager.MusicActivity">
+
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
+        android:layout_above="@id/mplayerfoot"
         android:layout_height="match_parent"
-        android:text="I have a back button instead of the hamburger menu"/>
+
+        android:id="@+id/music_recycler"
+        android:layout_marginTop="@dimen/activity_vertical_margin">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <include layout="@layout/mplayerfooter"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="105dp"
+        android:id="@+id/mplayerfoot"
+
+        />
+
 </RelativeLayout>

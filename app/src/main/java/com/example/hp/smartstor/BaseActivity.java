@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.example.hp.smartstor.CloudMusicManager.MusicActivity;
 import com.nononsenseapps.filepicker.FilePickerActivity;
 
 import net.gotev.uploadservice.UploadServiceBroadcastReceiver;
@@ -35,7 +36,7 @@ public class BaseActivity extends AppCompatActivity implements
     private Toolbar toolbar;
     private ActionBarDrawerToggle drawerToggle;
     private int selectedNavItemId;
-    public static String url;
+    public static String url,rooturl;
     public static String filesToUpload;
     public static ArrayList<rowItem> devices=new ArrayList<rowItem>();
     public String TAG = "UploadService";
@@ -165,8 +166,8 @@ public class BaseActivity extends AppCompatActivity implements
                 finish();
                 return true;
 
-            case R.id.nav_camera:
-                startActivity(new Intent(this, NoHamburger.class));
+            case R.id.nav_music:
+                startActivity(new Intent(this, MusicActivity.class));
                 return true;
 
             case R.id.nav_files :
