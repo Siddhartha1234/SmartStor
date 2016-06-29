@@ -8,11 +8,11 @@
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_above="@id/mplayerfoot"
         android:layout_height="match_parent"
 
         android:id="@+id/music_recycler"
-        android:layout_marginTop="@dimen/activity_vertical_margin">
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_above="@+id/include">
 
     </android.support.v7.widget.RecyclerView>
 
@@ -20,8 +20,8 @@
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="105dp"
-        android:id="@+id/mplayerfoot"
 
-        />
+
+        android:id="@+id/include" />
 
 </RelativeLayout>

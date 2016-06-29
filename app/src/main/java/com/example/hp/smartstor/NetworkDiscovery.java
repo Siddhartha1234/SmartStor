@@ -212,7 +212,7 @@ public class NetworkDiscovery extends BaseActivity implements NetworkCardAdapter
 
         String ip = getRootfromIP(getIPAddr());
         Log.i(TAG, ip);
-        int i=2 ;
+        int i=1 ;
 
         //String URL = "http://" + ip + String.valueOf(i) + ":3000/upload/multipart";
         client = new clientSearch("http://" + ip);
@@ -343,6 +343,15 @@ public class NetworkDiscovery extends BaseActivity implements NetworkCardAdapter
             fab.setImageResource(R.drawable.ic_pause_black_24dp);
 
         }
+    }
+    public void searchcancell(View v)
+    {
+        FloatingActionButton fab =(FloatingActionButton) v.findViewById(R.id.pausesearch);
+        client.client.cancelAllRequests(true);
+        progressBar.setProgress(0);
+        index=0;
+        fab.setImageResource(R.drawable.ic_play_arrow_white_24dp);
+
     }
 
 }

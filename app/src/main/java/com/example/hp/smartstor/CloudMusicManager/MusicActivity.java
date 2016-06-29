@@ -3,11 +3,13 @@ package com.example.hp.smartstor.CloudMusicManager;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.hp.smartstor.BaseActivity;
@@ -34,6 +36,8 @@ public class MusicActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_no_hamburger);
+        FloatingActionButton floatingActionButton =(FloatingActionButton)findViewById(R.id.fab);
+        floatingActionButton.setVisibility(View.GONE);
         recyclerView = (RecyclerView) findViewById(R.id.music_recycler);
         recyclerView.hasFixedSize();
         musicCardAdapter= new MusicCardAdapter(getApplicationContext(),rooturl);

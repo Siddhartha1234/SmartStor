@@ -40,6 +40,7 @@
             android:tint="#fff"
             android:onClick="searchpause"
             android:layout_centerHorizontal="true"
+            android:id="@+id/pausesearch"
             />
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
@@ -48,6 +49,7 @@
             android:layout_alignParentEnd="true"
             app:backgroundTint="#45d4f2"
             android:onClick="searchcancell"
+
 
             />
 
