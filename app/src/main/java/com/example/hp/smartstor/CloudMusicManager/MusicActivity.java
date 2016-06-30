@@ -1,6 +1,7 @@
 package com.example.hp.smartstor.CloudMusicManager;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.hp.smartstor.BaseActivity;
 import com.example.hp.smartstor.CloudFileExplorer.CardAdapter;
+import com.example.hp.smartstor.CloudMusicManager.uamp.ui.MusicPlayerActivity;
 import com.example.hp.smartstor.MainActivity;
 import com.example.hp.smartstor.R;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -52,6 +54,8 @@ public class MusicActivity extends BaseActivity {
 
         progress.setCancelable(false);
         ListdatafromJSON();
+        startActivity(new Intent(this, MusicPlayerActivity.class));
+
 
 
     }

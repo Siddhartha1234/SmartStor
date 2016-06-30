@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.uamp;
+package com.example.hp.smartstor.CloudMusicManager.uamp;
 
 import android.app.Application;
 
-import com.example.android.uamp.ui.FullScreenPlayerActivity;
+import com.example.hp.smartstor.CloudMusicManager.uamp.ui.FullScreenPlayerActivity;
+import com.example.hp.smartstor.R;
 import com.google.android.libraries.cast.companionlibrary.cast.CastConfiguration;
 import com.google.android.libraries.cast.companionlibrary.cast.VideoCastManager;
 

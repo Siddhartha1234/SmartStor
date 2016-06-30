@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.uamp;
+package com.example.hp.smartstor.CloudMusicManager.uamp;
 
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -34,16 +34,17 @@ import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.support.v7.media.MediaRouter;
 
-import com.example.android.uamp.model.MusicProvider;
-import com.example.android.uamp.playback.CastPlayback;
-import com.example.android.uamp.playback.LocalPlayback;
-import com.example.android.uamp.playback.Playback;
-import com.example.android.uamp.playback.PlaybackManager;
-import com.example.android.uamp.playback.QueueManager;
-import com.example.android.uamp.ui.NowPlayingActivity;
-import com.example.android.uamp.utils.CarHelper;
-import com.example.android.uamp.utils.LogHelper;
-import com.example.android.uamp.utils.WearHelper;
+import com.example.hp.smartstor.CloudMusicManager.uamp.model.MusicProvider;
+import com.example.hp.smartstor.CloudMusicManager.uamp.playback.CastPlayback;
+import com.example.hp.smartstor.CloudMusicManager.uamp.playback.LocalPlayback;
+import com.example.hp.smartstor.CloudMusicManager.uamp.playback.Playback;
+import com.example.hp.smartstor.CloudMusicManager.uamp.playback.PlaybackManager;
+import com.example.hp.smartstor.CloudMusicManager.uamp.playback.QueueManager;
+import com.example.hp.smartstor.CloudMusicManager.uamp.ui.NowPlayingActivity;
+import com.example.hp.smartstor.CloudMusicManager.uamp.utils.CarHelper;
+import com.example.hp.smartstor.CloudMusicManager.uamp.utils.LogHelper;
+import com.example.hp.smartstor.CloudMusicManager.uamp.utils.WearHelper;
+import com.example.hp.smartstor.R;
 import com.google.android.gms.cast.ApplicationMetadata;
 import com.google.android.libraries.cast.companionlibrary.cast.VideoCastManager;
 import com.google.android.libraries.cast.companionlibrary.cast.callbacks.VideoCastConsumerImpl;
@@ -51,7 +52,7 @@ import com.google.android.libraries.cast.companionlibrary.cast.callbacks.VideoCa
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_ROOT;
+import static com.example.hp.smartstor.CloudMusicManager.uamp.utils.MediaIDHelper.MEDIA_ID_ROOT;
 
 /**
  * This class provides a MediaBrowser through a service. It exposes the media library to a browsing
@@ -115,10 +116,10 @@ public class MusicService extends MediaBrowserServiceCompat implements
     private static final String TAG = LogHelper.makeLogTag(MusicService.class);
 
     // Extra on MediaSession that contains the Cast device name currently connected to
-    public static final String EXTRA_CONNECTED_CAST = "com.example.android.uamp.CAST_NAME";
+    public static final String EXTRA_CONNECTED_CAST = "com.example.hp.smartstor.CloudMusicManager.uamp.CAST_NAME";
     // The action of the incoming Intent indicating that it contains a command
     // to be executed (see {@link #onStartCommand})
-    public static final String ACTION_CMD = "com.example.android.uamp.ACTION_CMD";
+    public static final String ACTION_CMD = "com.example.hp.smartstor.CloudMusicManager.uamp.ACTION_CMD";
     // The key in the extras of the incoming Intent indicating the command that
     // should be executed (see {@link #onStartCommand})
     public static final String CMD_NAME = "CMD_NAME";
@@ -135,11 +136,11 @@ public class MusicService extends MediaBrowserServiceCompat implements
     private PlaybackManager mPlaybackManager;
 
     private MediaSessionCompat mSession;
-    private MediaNotificationManager mMediaNotificationManager;
+    private com.example.hp.smartstor.CloudMusicManager.uamp.MediaNotificationManager mMediaNotificationManager;
     private Bundle mSessionExtras;
     private final DelayedStopHandler mDelayedStopHandler = new DelayedStopHandler(this);
     private MediaRouter mMediaRouter;
-    private PackageValidator mPackageValidator;
+    private com.example.hp.smartstor.CloudMusicManager.uamp.PackageValidator mPackageValidator;
 
     private boolean mIsConnectedToCar;
     private BroadcastReceiver mCarConnectionReceiver;
@@ -200,7 +201,7 @@ public class MusicService extends MediaBrowserServiceCompat implements
         // {@link #onLoadChildren(String, Result<List<MediaItem>>) onLoadChildren()}.
         mMusicProvider.retrieveMediaAsync(null /* Callback */);
 
-        mPackageValidator = new PackageValidator(this);
+        mPackageValidator = new com.example.hp.smartstor.CloudMusicManager.uamp.PackageValidator(this);
 
         QueueManager queueManager = new QueueManager(mMusicProvider, getResources(),
                 new QueueManager.MetadataUpdateListener() {
@@ -254,7 +255,7 @@ public class MusicService extends MediaBrowserServiceCompat implements
         mPlaybackManager.updatePlaybackState(null);
 
         try {
-            mMediaNotificationManager = new MediaNotificationManager(this);
+            mMediaNotificationManager = new com.example.hp.smartstor.CloudMusicManager.uamp.MediaNotificationManager(this);
         } catch (RemoteException e) {
             throw new IllegalStateException("Could not create a MediaNotificationManager", e);
         }

@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package com.example.android.uamp.playback;
+package com.example.hp.smartstor.CloudMusicManager.uamp.playback;
 
 import android.content.res.Resources;
 import android.os.AsyncTask;
@@ -24,30 +24,30 @@ import android.support.annotation.NonNull;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 
-import com.example.android.uamp.R;
-import com.example.android.uamp.model.MusicProvider;
-import com.example.android.uamp.utils.LogHelper;
-import com.example.android.uamp.utils.MediaIDHelper;
-import com.example.android.uamp.utils.WearHelper;
+import com.example.hp.smartstor.CloudMusicManager.uamp.model.MusicProvider;
+import com.example.hp.smartstor.CloudMusicManager.uamp.utils.LogHelper;
+import com.example.hp.smartstor.CloudMusicManager.uamp.utils.MediaIDHelper;
+import com.example.hp.smartstor.CloudMusicManager.uamp.utils.WearHelper;
+import com.example.hp.smartstor.R;
 
 /**
  * Manage the interactions among the container service, the queue manager and the actual playback.
  */
-public class PlaybackManager implements Playback.Callback {
+public class PlaybackManager implements com.example.hp.smartstor.CloudMusicManager.uamp.playback.Playback.Callback {
 
     private static final String TAG = LogHelper.makeLogTag(PlaybackManager.class);
     // Action to thumbs up a media item
-    private static final String CUSTOM_ACTION_THUMBS_UP = "com.example.android.uamp.THUMBS_UP";
+    private static final String CUSTOM_ACTION_THUMBS_UP = "com.example.hp.smartstor.CloudMusicManager.uamp.THUMBS_UP";
 
     private MusicProvider mMusicProvider;
-    private QueueManager mQueueManager;
+    private com.example.hp.smartstor.CloudMusicManager.uamp.playback.QueueManager mQueueManager;
     private Resources mResources;
     private Playback mPlayback;
     private PlaybackServiceCallback mServiceCallback;
     private MediaSessionCallback mMediaSessionCallback;
 
     public PlaybackManager(PlaybackServiceCallback serviceCallback, Resources resources,
-                           MusicProvider musicProvider, QueueManager queueManager,
+                           MusicProvider musicProvider, com.example.hp.smartstor.CloudMusicManager.uamp.playback.QueueManager queueManager,
                            Playback playback) {
         mMusicProvider = musicProvider;
         mServiceCallback = serviceCallback;

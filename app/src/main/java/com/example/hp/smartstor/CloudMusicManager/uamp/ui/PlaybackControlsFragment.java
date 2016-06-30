@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.uamp.ui;
+package com.example.hp.smartstor.CloudMusicManager.uamp.ui;
 
 import android.app.Fragment;
 import android.content.Intent;
@@ -34,10 +34,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.android.uamp.AlbumArtCache;
-import com.example.android.uamp.MusicService;
-import com.example.android.uamp.R;
-import com.example.android.uamp.utils.LogHelper;
+import com.example.hp.smartstor.CloudMusicManager.uamp.AlbumArtCache;
+import com.example.hp.smartstor.CloudMusicManager.uamp.MusicService;
+import com.example.hp.smartstor.R;
+import com.example.hp.smartstor.CloudMusicManager.uamp.utils.LogHelper;
 
 /**
  * A class that shows the Media Queue to the user.

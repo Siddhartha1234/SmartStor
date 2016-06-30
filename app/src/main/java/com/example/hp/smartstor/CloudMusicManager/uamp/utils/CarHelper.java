@@ -13,14 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.uamp.utils;
+package com.example.hp.smartstor.CloudMusicManager.uamp.utils;
 
 import android.app.UiModeManager;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
-import com.example.android.uamp.MusicService;
+import com.example.hp.smartstor.CloudMusicManager.uamp.MusicService;
+import com.example.hp.smartstor.CloudMusicManager.uamp.utils.LogHelper;
 
 public class CarHelper {
     private static final String TAG = LogHelper.makeLogTag(CarHelper.class);

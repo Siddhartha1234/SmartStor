@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.uamp.ui;
+package com.example.hp.smartstor.CloudMusicManager.uamp.ui;
 
 import android.app.ActivityManager;
 import android.content.ComponentName;
@@ -28,21 +28,21 @@ import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 
-import com.example.android.uamp.MusicService;
-import com.example.android.uamp.R;
-import com.example.android.uamp.utils.LogHelper;
-import com.example.android.uamp.utils.NetworkHelper;
-import com.example.android.uamp.utils.ResourceHelper;
+import com.example.hp.smartstor.CloudMusicManager.uamp.MusicService;
+import com.example.hp.smartstor.R;
+import com.example.hp.smartstor.CloudMusicManager.uamp.utils.LogHelper;
+import com.example.hp.smartstor.CloudMusicManager.uamp.utils.NetworkHelper;
+import com.example.hp.smartstor.CloudMusicManager.uamp.utils.ResourceHelper;
 
 /**
  * Base activity for activities that need to show a playback control fragment when media is playing.
  */
-public abstract class BaseActivity extends ActionBarCastActivity implements MediaBrowserProvider {
+public abstract class BaseActivity extends ActionBarCastActivity implements com.example.hp.smartstor.CloudMusicManager.uamp.ui.MediaBrowserProvider {
 
     private static final String TAG = LogHelper.makeLogTag(BaseActivity.class);
 
     private MediaBrowserCompat mMediaBrowser;
-    private PlaybackControlsFragment mControlsFragment;
+    private com.example.hp.smartstor.CloudMusicManager.uamp.ui.PlaybackControlsFragment mControlsFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,7 @@ public abstract class BaseActivity extends ActionBarCastActivity implements Medi
         super.onStart();
         LogHelper.d(TAG, "Activity onStart");
 
-        mControlsFragment = (PlaybackControlsFragment) getFragmentManager()
+        mControlsFragment = (com.example.hp.smartstor.CloudMusicManager.uamp.ui.PlaybackControlsFragment) getFragmentManager()
             .findFragmentById(R.id.fragment_playback_controls);
         if (mControlsFragment == null) {
             throw new IllegalStateException("Mising fragment with id 'controls'. Cannot continue.");

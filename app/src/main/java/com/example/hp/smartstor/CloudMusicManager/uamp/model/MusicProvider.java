@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.uamp.model;
+package com.example.hp.smartstor.CloudMusicManager.uamp.model;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -24,9 +24,9 @@ import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
 
-import com.example.android.uamp.R;
-import com.example.android.uamp.utils.LogHelper;
-import com.example.android.uamp.utils.MediaIDHelper;
+import com.example.hp.smartstor.R;
+import com.example.hp.smartstor.CloudMusicManager.uamp.utils.LogHelper;
+import com.example.hp.smartstor.CloudMusicManager.uamp.utils.MediaIDHelper;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,9 +37,9 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_MUSICS_BY_GENRE;
-import static com.example.android.uamp.utils.MediaIDHelper.MEDIA_ID_ROOT;
-import static com.example.android.uamp.utils.MediaIDHelper.createMediaID;
+import static com.example.hp.smartstor.CloudMusicManager.uamp.utils.MediaIDHelper.MEDIA_ID_MUSICS_BY_GENRE;
+import static com.example.hp.smartstor.CloudMusicManager.uamp.utils.MediaIDHelper.MEDIA_ID_ROOT;
+import static com.example.hp.smartstor.CloudMusicManager.uamp.utils.MediaIDHelper.createMediaID;
 
 /**
  * Simple data provider for music tracks. The actual metadata source is delegated to a
@@ -49,11 +49,11 @@ public class MusicProvider {
 
     private static final String TAG = LogHelper.makeLogTag(MusicProvider.class);
 
-    private MusicProviderSource mSource;
+    private com.example.hp.smartstor.CloudMusicManager.uamp.model.MusicProviderSource mSource;
 
     // Categorized caches for music track data:
     private ConcurrentMap<String, List<MediaMetadataCompat>> mMusicListByGenre;
-    private final ConcurrentMap<String, MutableMediaMetadata> mMusicListById;
+    private final ConcurrentMap<String, com.example.hp.smartstor.CloudMusicManager.uamp.model.MutableMediaMetadata> mMusicListById;
 
     private final Set<String> mFavoriteTracks;
 
@@ -68,9 +68,9 @@ public class MusicProvider {
     }
 
     public MusicProvider() {
-        this(new RemoteJSONSource());
+        this(new com.example.hp.smartstor.CloudMusicManager.uamp.model.RemoteJSONSource());
     }
-    public MusicProvider(MusicProviderSource source) {
+    public MusicProvider(com.example.hp.smartstor.CloudMusicManager.uamp.model.MusicProviderSource source) {
         mSource = source;
         mMusicListByGenre = new ConcurrentHashMap<>();
         mMusicListById = new ConcurrentHashMap<>();
@@ -97,7 +97,7 @@ public class MusicProvider {
             return Collections.emptyList();
         }
         List<MediaMetadataCompat> shuffled = new ArrayList<>(mMusicListById.size());
-        for (MutableMediaMetadata mutableMetadata: mMusicListById.values()) {
+        for (com.example.hp.smartstor.CloudMusicManager.uamp.model.MutableMediaMetadata mutableMetadata: mMusicListById.values()) {
             shuffled.add(mutableMetadata.metadata);
         }
         Collections.shuffle(shuffled);
@@ -148,7 +148,7 @@ public class MusicProvider {
         }
         ArrayList<MediaMetadataCompat> result = new ArrayList<>();
         query = query.toLowerCase(Locale.US);
-        for (MutableMediaMetadata track : mMusicListById.values()) {
+        for (com.example.hp.smartstor.CloudMusicManager.uamp.model.MutableMediaMetadata track : mMusicListById.values()) {
             if (track.metadata.getString(metadataField).toLowerCase(Locale.US)
                 .contains(query)) {
                 result.add(track.metadata);
@@ -182,7 +182,7 @@ public class MusicProvider {
 
                 .build();
 
-        MutableMediaMetadata mutableMetadata = mMusicListById.get(musicId);
+        com.example.hp.smartstor.CloudMusicManager.uamp.model.MutableMediaMetadata mutableMetadata = mMusicListById.get(musicId);
         if (mutableMetadata == null) {
             throw new IllegalStateException("Unexpected error: Inconsistent data structures in " +
                     "MusicProvider");
@@ -241,7 +241,7 @@ public class MusicProvider {
     private synchronized void buildListsByGenre() {
         ConcurrentMap<String, List<MediaMetadataCompat>> newMusicListByGenre = new ConcurrentHashMap<>();
 
-        for (MutableMediaMetadata m : mMusicListById.values()) {
+        for (com.example.hp.smartstor.CloudMusicManager.uamp.model.MutableMediaMetadata m : mMusicListById.values()) {
             String genre = m.metadata.getString(MediaMetadataCompat.METADATA_KEY_GENRE);
             List<MediaMetadataCompat> list = newMusicListByGenre.get(genre);
             if (list == null) {
@@ -262,7 +262,7 @@ public class MusicProvider {
                 while (tracks.hasNext()) {
                     MediaMetadataCompat item = tracks.next();
                     String musicId = item.getString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID);
-                    mMusicListById.put(musicId, new MutableMediaMetadata(musicId, item));
+                    mMusicListById.put(musicId, new com.example.hp.smartstor.CloudMusicManager.uamp.model.MutableMediaMetadata(musicId, item));
                 }
                 buildListsByGenre();
                 mCurrentState = State.INITIALIZED;
@@ -310,7 +310,7 @@ public class MusicProvider {
                 .setTitle(resources.getString(R.string.browse_genres))
                 .setSubtitle(resources.getString(R.string.browse_genre_subtitle))
                 .setIconUri(Uri.parse("android.resource://" +
-                        "com.example.android.uamp/drawable/ic_by_genre"))
+                        "com.example.hp.smartstor.CloudMusicManager/drawable/ic_by_genre"))
                 .build();
         return new MediaBrowserCompat.MediaItem(description,
                 MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);

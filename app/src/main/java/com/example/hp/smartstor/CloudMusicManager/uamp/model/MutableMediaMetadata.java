@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.uamp.model;
+package com.example.hp.smartstor.CloudMusicManager.uamp.model;
 
 import android.support.v4.media.MediaMetadataCompat;
 import android.text.TextUtils;

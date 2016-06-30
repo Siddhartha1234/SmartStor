@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.uamp.utils;
+package com.example.hp.smartstor.CloudMusicManager.uamp.utils;
 
 import android.support.annotation.NonNull;
 

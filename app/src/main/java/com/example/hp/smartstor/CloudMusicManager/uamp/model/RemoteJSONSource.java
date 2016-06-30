@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.example.android.uamp.model;
+package com.example.hp.smartstor.CloudMusicManager.uamp.model;
 
 import android.support.v4.media.MediaMetadataCompat;
 
-import com.example.android.uamp.utils.LogHelper;
+import com.example.hp.smartstor.CloudMusicManager.uamp.utils.LogHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;

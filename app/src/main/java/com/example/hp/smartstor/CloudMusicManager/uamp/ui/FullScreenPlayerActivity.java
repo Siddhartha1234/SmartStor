@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.uamp.ui;
+package com.example.hp.smartstor.CloudMusicManager.uamp.ui;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -38,10 +38,10 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.example.android.uamp.AlbumArtCache;
-import com.example.android.uamp.MusicService;
-import com.example.android.uamp.R;
-import com.example.android.uamp.utils.LogHelper;
+import com.example.hp.smartstor.CloudMusicManager.uamp.AlbumArtCache;
+import com.example.hp.smartstor.CloudMusicManager.uamp.MusicService;
+import com.example.hp.smartstor.R;
+import com.example.hp.smartstor.CloudMusicManager.uamp.utils.LogHelper;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -242,7 +242,7 @@ public class FullScreenPlayerActivity extends ActionBarCastActivity {
     private void updateFromParams(Intent intent) {
         if (intent != null) {
             MediaDescriptionCompat description = intent.getParcelableExtra(
-                MusicPlayerActivity.EXTRA_CURRENT_MEDIA_DESCRIPTION);
+                com.example.hp.smartstor.CloudMusicManager.uamp.ui.MusicPlayerActivity.EXTRA_CURRENT_MEDIA_DESCRIPTION);
             if (description != null) {
                 updateMediaDescription(description);
             }

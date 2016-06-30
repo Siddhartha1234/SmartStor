@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.uamp.ui;
+package com.example.hp.smartstor.CloudMusicManager.uamp.ui;
 
 import android.app.ActivityOptions;
 import android.app.FragmentManager;
@@ -32,10 +32,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.android.uamp.R;
-import com.example.android.uamp.utils.LogHelper;
+import com.example.hp.smartstor.R;
+import com.example.hp.smartstor.CloudMusicManager.uamp.utils.LogHelper;
+import com.google.android.libraries.cast.companionlibrary.cast.CastConfiguration;
 import com.google.android.libraries.cast.companionlibrary.cast.VideoCastManager;
 import com.google.android.libraries.cast.companionlibrary.cast.callbacks.VideoCastConsumerImpl;
+import com.google.android.libraries.cast.companionlibrary.cast.player.VideoCastControllerActivity;
 import com.google.android.libraries.cast.companionlibrary.widgets.IntroductoryOverlay;
 
 /**
@@ -109,10 +111,10 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                 Class activityClass = null;
                 switch (mItemToOpenWhenDrawerCloses) {
                     case R.id.navigation_allmusic:
-                        activityClass = MusicPlayerActivity.class;
+                        activityClass = com.example.hp.smartstor.CloudMusicManager.uamp.ui.MusicPlayerActivity.class;
                         break;
                     case R.id.navigation_playlists:
-                        activityClass = PlaceholderActivity.class;
+                        activityClass = com.example.hp.smartstor.CloudMusicManager.uamp.ui.PlaceholderActivity.class;
                         break;
                 }
                 if (activityClass != null) {
@@ -155,7 +157,13 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
 
         // Ensure that Google Play Service is available.
         VideoCastManager.checkGooglePlayServices(this);
-
+        CastConfiguration options = new CastConfiguration.Builder("000000")
+                .enableAutoReconnect()
+                .enableLockScreen()
+                .enableWifiReconnection()
+                .enableNotification()
+                .build();
+        VideoCastManager.initialize(this,options);
         mCastManager = VideoCastManager.getInstance();
         mCastManager.reconnectSessionIfPossible();
     }
@@ -296,9 +304,9 @@ public abstract class ActionBarCastActivity extends AppCompatActivity {
                         return true;
                     }
                 });
-        if (MusicPlayerActivity.class.isAssignableFrom(getClass())) {
+        if (com.example.hp.smartstor.CloudMusicManager.uamp.ui.MusicPlayerActivity.class.isAssignableFrom(getClass())) {
             navigationView.setCheckedItem(R.id.navigation_allmusic);
-        } else if (PlaceholderActivity.class.isAssignableFrom(getClass())) {
+        } else if (com.example.hp.smartstor.CloudMusicManager.uamp.ui.PlaceholderActivity.class.isAssignableFrom(getClass())) {
             navigationView.setCheckedItem(R.id.navigation_playlists);
         }
     }

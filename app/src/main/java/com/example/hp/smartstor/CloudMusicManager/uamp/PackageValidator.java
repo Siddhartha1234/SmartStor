@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.uamp;
+package com.example.hp.smartstor.CloudMusicManager.uamp;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -22,7 +22,8 @@ import android.content.res.XmlResourceParser;
 import android.os.Process;
 import android.util.Base64;
 
-import com.example.android.uamp.utils.LogHelper;
+import com.example.hp.smartstor.CloudMusicManager.uamp.utils.LogHelper;
+import com.example.hp.smartstor.R;
 
 import org.xmlpull.v1.XmlPullParserException;
 

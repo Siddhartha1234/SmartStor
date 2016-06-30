@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.uamp.ui;
+package com.example.hp.smartstor.CloudMusicManager.uamp.ui;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -38,10 +38,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.android.uamp.R;
-import com.example.android.uamp.utils.LogHelper;
-import com.example.android.uamp.utils.MediaIDHelper;
-import com.example.android.uamp.utils.NetworkHelper;
+import com.example.hp.smartstor.R;
+import com.example.hp.smartstor.CloudMusicManager.uamp.utils.LogHelper;
+import com.example.hp.smartstor.CloudMusicManager.uamp.utils.MediaIDHelper;
+import com.example.hp.smartstor.CloudMusicManager.uamp.utils.NetworkHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +50,7 @@ import java.util.List;
  * A Fragment that lists all the various browsable queues available
  * from a {@link android.service.media.MediaBrowserService}.
  * <p/>
- * It uses a {@link MediaBrowserCompat} to connect to the {@link com.example.android.uamp.MusicService}.
+ * It uses a {@link MediaBrowserCompat} to connect to the {@link com.example.hp.smartstor.CloudMusicManager.uamp.MusicService}.
  * Once connected, the fragment subscribes to get all the children.
  * All {@link MediaBrowserCompat.MediaItem}'s that can be browsed are shown in a ListView.
  */
@@ -311,9 +311,9 @@ public class MediaBrowserFragment extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             MediaBrowserCompat.MediaItem item = getItem(position);
-            int itemState = MediaItemViewHolder.STATE_NONE;
+            int itemState = com.example.hp.smartstor.CloudMusicManager.uamp.ui.MediaItemViewHolder.STATE_NONE;
             if (item.isPlayable()) {
-                itemState = MediaItemViewHolder.STATE_PLAYABLE;
+                itemState = com.example.hp.smartstor.CloudMusicManager.uamp.ui.MediaItemViewHolder.STATE_PLAYABLE;
                 MediaControllerCompat controller = ((FragmentActivity) getContext())
                         .getSupportMediaController();
                 if (controller != null && controller.getMetadata() != null) {
@@ -324,21 +324,21 @@ public class MediaBrowserFragment extends Fragment {
                         PlaybackStateCompat pbState = controller.getPlaybackState();
                         if (pbState == null ||
                                 pbState.getState() == PlaybackStateCompat.STATE_ERROR) {
-                            itemState = MediaItemViewHolder.STATE_NONE;
+                            itemState = com.example.hp.smartstor.CloudMusicManager.uamp.ui.MediaItemViewHolder.STATE_NONE;
                         } else if (pbState.getState() == PlaybackStateCompat.STATE_PLAYING) {
-                            itemState = MediaItemViewHolder.STATE_PLAYING;
+                            itemState = com.example.hp.smartstor.CloudMusicManager.uamp.ui.MediaItemViewHolder.STATE_PLAYING;
                         } else {
-                            itemState = MediaItemViewHolder.STATE_PAUSED;
+                            itemState = com.example.hp.smartstor.CloudMusicManager.uamp.ui.MediaItemViewHolder.STATE_PAUSED;
                         }
                     }
                 }
             }
-            return MediaItemViewHolder.setupView((Activity) getContext(), convertView, parent,
+            return com.example.hp.smartstor.CloudMusicManager.uamp.ui.MediaItemViewHolder.setupView((Activity) getContext(), convertView, parent,
                 item.getDescription(), itemState);
         }
     }
 
-    public interface MediaFragmentListener extends MediaBrowserProvider {
+    public interface MediaFragmentListener extends com.example.hp.smartstor.CloudMusicManager.uamp.ui.MediaBrowserProvider {
         void onMediaItemSelected(MediaBrowserCompat.MediaItem item);
         void setToolbarTitle(CharSequence title);
     }
