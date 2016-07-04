@@ -11,7 +11,7 @@
             android:title="Find peers" />
         <item
             android:id="@+id/nav_music"
-            android:icon="@drawable/ic_library_music_black_24dp"
+            android:icon="@drawable/ic_menu_share"
             android:title="Music Library" />
 
         <item

@@ -1,4 +1,5 @@
 package com.example.hp.smartstor;
+
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.Intent;
@@ -7,18 +8,21 @@ import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.LayoutRes;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
+
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
+import com.example.hp.smartstor.CloudFileExplorer.ViewExplorer;
 import com.example.hp.smartstor.CloudMusicManager.MusicActivity;
 import com.nononsenseapps.filepicker.FilePickerActivity;
 
@@ -177,6 +181,8 @@ public class BaseActivity extends AppCompatActivity implements
             case R.id.nav_gallery :
                 startActivity(new Intent(this, NoToolbar.class));
                 return true;
+            case R.id.explorer_rview:
+                startActivity(new Intent(this, ViewExplorer.class));
         }
 
         return super.onOptionsItemSelected(item);

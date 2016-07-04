@@ -65,7 +65,7 @@
         <android.support.design.widget.FloatingActionButton
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_skip_next_black_24dp"
+            android:src="@drawable/ic_menu_gallery"
             app:backgroundTint="#00ddff"
             android:tint="#fff"
             android:onClick="onMusicplay"
@@ -76,7 +76,7 @@
         <android.support.design.widget.FloatingActionButton
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_skip_previous_black_24dp"
+            android:src="@drawable/ic_menu_camera"
             app:backgroundTint="#00ddff"
             android:tint="#fff"
             android:onClick="onMusicplay"
