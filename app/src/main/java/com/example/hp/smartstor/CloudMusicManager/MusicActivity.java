@@ -38,7 +38,7 @@ public class MusicActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_no_hamburger);
-        FloatingActionButton floatingActionButton =(FloatingActionButton)findViewById(R.id.fab);
+        /*FloatingActionButton floatingActionButton =(FloatingActionButton)findViewById(R.id.fab);
         floatingActionButton.setVisibility(View.GONE);
         recyclerView = (RecyclerView) findViewById(R.id.music_recycler);
         recyclerView.hasFixedSize();
@@ -53,8 +53,8 @@ public class MusicActivity extends BaseActivity {
         progress.setIndeterminate(true);
 
         progress.setCancelable(false);
-        ListdatafromJSON();
-        startActivity(new Intent(this, MusicPlayerActivity.class));
+        ListdatafromJSON();*/
+        startActivity(new Intent(this, MusicPlayerActivity.class).putExtra("url",rooturl));
 
 
 

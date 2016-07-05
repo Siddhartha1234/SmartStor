@@ -310,7 +310,7 @@ public class MusicProvider {
                 .setTitle(resources.getString(R.string.browse_genres))
                 .setSubtitle(resources.getString(R.string.browse_genre_subtitle))
                 .setIconUri(Uri.parse("android.resource://" +
-                        "com.example.hp.smartstor.CloudMusicManager/drawable/ic_by_genre"))
+                        "com.example.hp.smartstor/drawable/ic_by_genre"))
                 .build();
         return new MediaBrowserCompat.MediaItem(description,
                 MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);

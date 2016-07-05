@@ -20,7 +20,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.hp.smartstor.CloudFileExplorer.ViewExplorer;
 import com.example.hp.smartstor.CloudMusicManager.MusicActivity;
@@ -42,9 +41,11 @@ public class BaseActivity extends AppCompatActivity implements
     private int selectedNavItemId;
     public static String url,rooturl;
     public static String filesToUpload;
-    public static ArrayList<rowItem> devices=new ArrayList<rowItem>();
+    public static ArrayList<rowItem> device=new ArrayList<rowItem>();
     public String TAG = "UploadService";
+    public static String rurl;
     public int FILE_CODE=1;
+
     public boolean askedToPause=Boolean.FALSE;
     public static int index;
     private final UploadServiceBroadcastReceiver uploadReceiver =
@@ -175,14 +176,14 @@ public class BaseActivity extends AppCompatActivity implements
                 return true;
 
             case R.id.nav_files :
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, ViewExplorer.class));
                 return true;
 
             case R.id.nav_gallery :
                 startActivity(new Intent(this, NoToolbar.class));
                 return true;
-            case R.id.explorer_rview:
-                startActivity(new Intent(this, ViewExplorer.class));
+
+
         }
 
         return super.onOptionsItemSelected(item);

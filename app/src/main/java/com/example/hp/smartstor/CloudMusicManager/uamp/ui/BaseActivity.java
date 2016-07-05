@@ -40,7 +40,7 @@ import com.example.hp.smartstor.CloudMusicManager.uamp.utils.ResourceHelper;
 public abstract class BaseActivity extends ActionBarCastActivity implements com.example.hp.smartstor.CloudMusicManager.uamp.ui.MediaBrowserProvider {
 
     private static final String TAG = LogHelper.makeLogTag(BaseActivity.class);
-
+    public static String rurl;
     private MediaBrowserCompat mMediaBrowser;
     private com.example.hp.smartstor.CloudMusicManager.uamp.ui.PlaybackControlsFragment mControlsFragment;
 

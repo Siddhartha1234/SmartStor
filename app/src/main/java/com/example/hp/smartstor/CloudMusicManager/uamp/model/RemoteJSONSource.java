@@ -16,8 +16,10 @@
 
 package com.example.hp.smartstor.CloudMusicManager.uamp.model;
 
+import android.net.Uri;
 import android.support.v4.media.MediaMetadataCompat;
 
+import com.example.hp.smartstor.BaseActivity;
 import com.example.hp.smartstor.CloudMusicManager.uamp.utils.LogHelper;
 
 import org.json.JSONArray;
@@ -36,13 +38,12 @@ import java.util.Iterator;
  * Utility class to get a list of MusicTrack's based on a server-side JSON
  * configuration.
  */
-public class RemoteJSONSource implements MusicProviderSource {
+public class RemoteJSONSource extends com.example.hp.smartstor.CloudMusicManager.uamp.ui.BaseActivity implements MusicProviderSource {
 
     private static final String TAG = LogHelper.makeLogTag(RemoteJSONSource.class);
 
     protected static final String CATALOG_URL =
-        "http://storage.googleapis.com/automotive-media/music.json";
-
+       "http://192.168.1.2:4000/"+"get-music";
     private static final String JSON_MUSIC = "music";
     private static final String JSON_TITLE = "title";
     private static final String JSON_ALBUM = "album";
@@ -71,6 +72,8 @@ public class RemoteJSONSource implements MusicProviderSource {
                 }
             }
             return tracks.iterator();
+
+
         } catch (JSONException e) {
             LogHelper.e(TAG, e, "Could not retrieve music list");
             throw new RuntimeException("Could not retrieve music list", e);
@@ -79,7 +82,7 @@ public class RemoteJSONSource implements MusicProviderSource {
 
     private MediaMetadataCompat buildFromJSON(JSONObject json, String basePath) throws JSONException {
         String title = json.getString(JSON_TITLE);
-        String album = json.getString(JSON_ALBUM);
+        String album = Uri.encode(json.getString(JSON_ALBUM));
         String artist = json.getString(JSON_ARTIST);
         String genre = json.getString(JSON_GENRE);
         String source = json.getString(JSON_SOURCE);
@@ -130,6 +133,7 @@ public class RemoteJSONSource implements MusicProviderSource {
         BufferedReader reader = null;
         try {
             URLConnection urlConnection = new URL(urlString).openConnection();
+
             reader = new BufferedReader(new InputStreamReader(
                     urlConnection.getInputStream(), "iso-8859-1"));
             StringBuilder sb = new StringBuilder();

@@ -56,7 +56,10 @@ public class MusicPlayerActivity extends BaseActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LogHelper.d(TAG, "Activity onCreate");
-
+        Bundle b=getIntent().getExtras();
+        if(b!=null){
+            rurl=b.getString("url");
+        }
         setContentView(R.layout.activity_player);
 
         initializeToolbar();
