@@ -5,12 +5,13 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.example.hp.smartstor.BaseActivity;
 import com.example.hp.smartstor.R;
 
 /**
  * Created by SahilYerawar on 04-07-2016.
  */
-public class ViewExplorer extends Activity {
+public class ViewExplorer extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -18,8 +19,10 @@ public class ViewExplorer extends Activity {
 
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.explorer_rview);
         mRecyclerView.setHasFixedSize(true);
-
+        CardAdapter cardAdapter =new CardAdapter(getApplicationContext());
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(cardAdapter);
+
     }
 }

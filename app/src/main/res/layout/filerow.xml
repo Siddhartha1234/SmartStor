@@ -26,6 +26,7 @@
             android:padding="@dimen/fab_margin"
             />
         <ImageView
+            android:id="@+id/file_ext"
             android:layout_below="@+id/filetheme"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
