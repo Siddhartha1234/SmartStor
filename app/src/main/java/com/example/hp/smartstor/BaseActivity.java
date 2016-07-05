@@ -41,7 +41,7 @@ public class BaseActivity extends AppCompatActivity implements
     private int selectedNavItemId;
     public static String url,rooturl;
     public static String filesToUpload;
-    public static ArrayList<rowItem> device=new ArrayList<rowItem>();
+    public static ArrayList<rowItem> devices=new ArrayList<rowItem>();
     public String TAG = "UploadService";
     public static String rurl;
     public int FILE_CODE=1;
