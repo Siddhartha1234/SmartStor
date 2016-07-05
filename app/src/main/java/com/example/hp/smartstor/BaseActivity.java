@@ -21,7 +21,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.example.hp.smartstor.CloudFileExplorer.ViewExplorer;
+import com.example.hp.smartstor.CloudFileExplorer.ExplorerView;
 import com.example.hp.smartstor.CloudMusicManager.MusicActivity;
 import com.nononsenseapps.filepicker.FilePickerActivity;
 
@@ -176,7 +176,7 @@ public class BaseActivity extends AppCompatActivity implements
                 return true;
 
             case R.id.nav_files :
-                startActivity(new Intent(this, ViewExplorer.class));
+                startActivity(new Intent(this, ExplorerView.class));
                 return true;
 
             case R.id.nav_gallery :
