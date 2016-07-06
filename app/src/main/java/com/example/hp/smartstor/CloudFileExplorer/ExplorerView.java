@@ -8,7 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 
 import com.example.hp.smartstor.BaseActivity;
 import com.example.hp.smartstor.R;
@@ -55,10 +57,19 @@ public class ExplorerView extends BaseActivity{
     }
 
     void addFolderToPanel(String folder_name){
-        Button folder = new Button(getApplicationContext());
+        final Button folder = new Button(getApplicationContext());
         folder.setText(folder_name);
         folder.setTypeface(null, Typeface.BOLD);
         folder.setGravity(Gravity.CENTER);
+        folder.setLayoutParams(new HorizontalScrollView.LayoutParams(HorizontalScrollView.LayoutParams.WRAP_CONTENT,HorizontalScrollView.LayoutParams.WRAP_CONTENT));
+        folder.setOnClickListener(new View.OnClickListener(){public void onClick(View view){
+
+            /*TODO add functionality of clicking button by removing it from the panel
+            * removeButtonFromPanel(folder)*/
+
+        }});
+        HorizontalScrollView scroll = (HorizontalScrollView) findViewById(R.id.hscroll);
+        scroll.addView(folder);
 
     }
 

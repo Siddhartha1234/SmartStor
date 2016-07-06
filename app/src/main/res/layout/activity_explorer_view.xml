@@ -15,16 +15,18 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
+            android:layout_height="40dp"
             android:background="?attr/colorPrimary"
             app:theme="@style/MainActionBar"
             android:layout_alignParentTop="true">
             <HorizontalScrollView
+                android:id="@+id/hscroll"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
             </HorizontalScrollView>
         </android.support.v7.widget.Toolbar>
+
 
     </android.support.design.widget.AppBarLayout>
 
