@@ -1,11 +1,14 @@
 package com.example.hp.smartstor.CloudFileExplorer;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.example.hp.smartstor.BaseActivity;
 import com.example.hp.smartstor.R;
@@ -49,6 +52,14 @@ public class ExplorerView extends BaseActivity{
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    void addFolderToPanel(String folder_name){
+        Button folder = new Button(getApplicationContext());
+        folder.setText(folder_name);
+        folder.setTypeface(null, Typeface.BOLD);
+        folder.setGravity(Gravity.CENTER);
+
     }
 
 }
