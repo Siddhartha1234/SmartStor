@@ -11,9 +11,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.hp.smartstor.BaseActivity;
 import com.example.hp.smartstor.R;
 
-public class ExplorerView extends AppCompatActivity {
+public class ExplorerView extends BaseActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
