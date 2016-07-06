@@ -30,7 +30,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         Bitmap extimage = BitmapFactory.decodeResource(context.getResources(), R.mipmap.amp3);
         Bitmap filetheme= BitmapFactory.decodeResource(context.getResources(),R.mipmap.music);
         String filename="Pitbull feat Flo rida";
-        ListItem test=new ListItem(extimage,filetheme,filename);
+        String filesize="256kB";
+        String date="4-7-16";
+        ListItem test=new ListItem(extimage,filetheme,filename,filesize,date);
+        items.add(test);
         items.add(test);
         items.add(test);
         items.add(test);
@@ -50,6 +53,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         holder.extview.setImageBitmap(list.getExtImage());
         holder.fileview.setImageBitmap(list.getFileTheme());
         holder.fnameview.setText(list.getFileName());
+        holder.fsizeview.setText(list.getFileSize());
+        holder.fdateview.setText(list.getDate());
     }
 
     @Override
@@ -61,6 +66,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         public ImageView extview;
         public ImageView fileview;
         public TextView fnameview;
+        public TextView fsizeview;
+        public TextView fdateview;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -68,6 +75,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
             extview= (ImageView) itemView.findViewById(R.id.file_ext);
             fileview = (ImageView) itemView.findViewById(R.id.filetheme);
             fnameview = (TextView) itemView.findViewById(R.id.file_name);
+            fsizeview = (TextView) itemView.findViewById(R.id.filesize);
+            fdateview = (TextView) itemView.findViewById(R.id.date_created);
 
         }
     }

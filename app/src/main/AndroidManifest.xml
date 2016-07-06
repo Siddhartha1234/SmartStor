@@ -179,7 +179,7 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".CloudFileExplorer.ExplorerView"
-            android:label="@string/title_activity_explorer_view"
+            android:label="CloudFileExplorer"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 

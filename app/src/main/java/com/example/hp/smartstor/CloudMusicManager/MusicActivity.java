@@ -3,28 +3,20 @@ package com.example.hp.smartstor.CloudMusicManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import com.example.hp.smartstor.BaseActivity;
-import com.example.hp.smartstor.CloudFileExplorer.CardAdapter;
 import com.example.hp.smartstor.CloudMusicManager.uamp.ui.MusicPlayerActivity;
-import com.example.hp.smartstor.MainActivity;
 import com.example.hp.smartstor.R;
 import com.loopj.android.http.TextHttpResponseHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -81,7 +73,7 @@ public class MusicActivity extends BaseActivity {
                                 {
                                     String fname = (getFilenamefrompath(jsonObject.getString("path")));
                                     if(fname!="err")
-                                        musicCardAdapter.items.add(new ListItem(musicCardAdapter.extimage, musicCardAdapter.filetheme,fname ));
+                                        musicCardAdapter.items.add(new ListItem(musicCardAdapter.extimage, musicCardAdapter.filetheme,fname,"256kB","6-7-16" ));
 
                                     if(i==response.length()-1)
                                     {
