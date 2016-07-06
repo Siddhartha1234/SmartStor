@@ -95,6 +95,7 @@ public final class AlbumArtCache {
             protected Bitmap[] doInBackground(Void[] objects) {
                 Bitmap[] bitmaps;
                 try {
+
                     Bitmap bitmap = BitmapHelper.fetchAndRescaleBitmap(artUrl,
                         MAX_ART_WIDTH, MAX_ART_HEIGHT);
                     Bitmap icon = BitmapHelper.scaleBitmap(bitmap,

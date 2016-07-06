@@ -18,6 +18,7 @@ package com.example.hp.smartstor.CloudMusicManager.uamp.model;
 
 import android.net.Uri;
 import android.support.v4.media.MediaMetadataCompat;
+import android.util.Log;
 
 import com.example.hp.smartstor.BaseActivity;
 import com.example.hp.smartstor.CloudMusicManager.uamp.utils.LogHelper;
@@ -43,7 +44,7 @@ public class RemoteJSONSource extends com.example.hp.smartstor.CloudMusicManager
     private static final String TAG = LogHelper.makeLogTag(RemoteJSONSource.class);
 
     protected static final String CATALOG_URL =
-       "http://192.168.1.2:4000/"+"get-music";
+       rurl+"get-music";
     private static final String JSON_MUSIC = "music";
     private static final String JSON_TITLE = "title";
     private static final String JSON_ALBUM = "album";
@@ -82,10 +83,15 @@ public class RemoteJSONSource extends com.example.hp.smartstor.CloudMusicManager
 
     private MediaMetadataCompat buildFromJSON(JSONObject json, String basePath) throws JSONException {
         String title = json.getString(JSON_TITLE);
-        String album = Uri.encode(json.getString(JSON_ALBUM));
+        String alb=json.getString(JSON_ALBUM);
+        alb=alb.replace(" ","%20");
+        String album=alb;
+        Log.i("album after edit",alb);
         String artist = json.getString(JSON_ARTIST);
         String genre = json.getString(JSON_GENRE);
-        String source = json.getString(JSON_SOURCE);
+        String src=json.getString(JSON_SOURCE);
+        src=src.replace(" ","%20");
+        String source =src ;
         String iconUrl = json.getString(JSON_IMAGE);
         int trackNumber = json.getInt(JSON_TRACK_NUMBER);
         int totalTrackCount = json.getInt(JSON_TOTAL_TRACK_COUNT);

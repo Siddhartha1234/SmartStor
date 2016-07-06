@@ -63,11 +63,14 @@ public class BitmapHelper {
     @SuppressWarnings("SameParameterValue")
     public static Bitmap fetchAndRescaleBitmap(String uri, int width, int height)
             throws IOException {
+        uri=uri.replace(" ","%20");
         URL url = new URL(uri);
         BufferedInputStream is = null;
         try {
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestProperty("User-agent", "Mozilla/4.0");
             is = new BufferedInputStream(urlConnection.getInputStream());
+
             is.mark(MAX_READ_LIMIT_PER_IMG);
             int scaleFactor = findScaleFactor(width, height, is);
             LogHelper.d(TAG, "Scaling bitmap ", uri, " by factor ", scaleFactor, " to support ",

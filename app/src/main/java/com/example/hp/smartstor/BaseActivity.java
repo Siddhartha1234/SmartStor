@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.hp.smartstor.CloudFileExplorer.ExplorerView;
 import com.example.hp.smartstor.CloudMusicManager.MusicActivity;
+import com.example.hp.smartstor.CloudMusicManager.uamp.ui.MusicPlayerActivity;
 import com.nononsenseapps.filepicker.FilePickerActivity;
 
 import net.gotev.uploadservice.UploadServiceBroadcastReceiver;
@@ -43,7 +44,6 @@ public class BaseActivity extends AppCompatActivity implements
     public static String filesToUpload;
     public static ArrayList<rowItem> devices=new ArrayList<rowItem>();
     public String TAG = "UploadService";
-    public static String rurl;
     public int FILE_CODE=1;
 
     public boolean askedToPause=Boolean.FALSE;
@@ -172,7 +172,7 @@ public class BaseActivity extends AppCompatActivity implements
                 return true;
 
             case R.id.nav_music:
-                startActivity(new Intent(this, MusicActivity.class));
+                startActivity(new Intent(this, MusicPlayerActivity.class).putExtra("url",rooturl));
                 return true;
 
             case R.id.nav_files :

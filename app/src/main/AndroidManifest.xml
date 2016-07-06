@@ -16,6 +16,12 @@
     <!--
     Set android.software.leanback to false, so the APK will be available to both
     TV and regular devices.
+    <uses-sdk
+        android:minSdkVersion="20"
+        android:maxSdkVersion="N"
+        android:targetSdkVersion="N">
+
+    </uses-sdk>
     -->
     <uses-feature
         android:name="android.software.leanback"
@@ -174,7 +180,7 @@
         <activity
             android:name=".CloudFileExplorer.ExplorerView"
             android:label="@string/title_activity_explorer_view"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
