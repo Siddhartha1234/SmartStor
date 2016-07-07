@@ -1,9 +1,9 @@
 package com.example.hp.smartstor.CloudMusicManager;
 
-import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.SyncHttpClient;
+import com.loopj.android.http.AsyncHttpClient;
 
 /**
  * Created by hp on 6/9/2016.
