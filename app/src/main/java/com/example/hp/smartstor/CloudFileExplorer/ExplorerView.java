@@ -1,11 +1,8 @@
 package com.example.hp.smartstor.CloudFileExplorer;
 
-import android.content.res.ColorStateList;
-import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.hp.smartstor.BaseActivity;
-import com.example.hp.smartstor.CloudMusicManager.ListItem;
 import com.example.hp.smartstor.R;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -48,10 +44,11 @@ public class ExplorerView extends BaseActivity{
 
         RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.explorer_rview);
         mRecyclerView.setHasFixedSize(true);
-        CardAdapter cardAdapter =new CardAdapter(getApplicationContext());
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(cardAdapter);
+        String fNameArray[]={"Concrete Mathematics","Percy Jackson- the Last Olympian","Fahrenheit 451"};
+        String fSizeArray[]={"810kB","1.2MB","400kB"};
+        String fDateArray[]={"26-10-15","4-2-16","3-6-16"};
+        String fExtArray[]={".Pdf",".Docx",".Doc"};
+        arrayToCard(fNameArray,fSizeArray,fDateArray,fExtArray,mRecyclerView);
         addFolderToPanel("c:");
         addFolderToPanel("SmartStor");
     }
@@ -97,19 +94,19 @@ public class ExplorerView extends BaseActivity{
                         {
                             String fname = (getFilenamefrompath(jsonObject.getString("path")));
                             if (fname != "err") {
-                                /*TODO add fname to Listitem's new object here */
+
                                 Fnames.add(fname);
                             }
                             Fextensions.add(jsonObject.getString("Ext"));
-                            /*TODO add extension to Listitem's new object here */
-                            FSizeList.add(jsonObject.getString("size"));
-                            /*TODO add size to Listitem's new object here */
-                            FDateCreatedList.add(getDateHelper(jsonObject.getString("dateCreated")));
-                            /*TODO add dateCreated to Listitem's new object here */
-                            isdirectoryList.add(jsonObject.getBoolean("isDirectory"));
-                            /*TODO add isDirectory to Listitem's new object here */
 
-                            /*TODO adapter.items.add(new object)*/
+                            FSizeList.add(jsonObject.getString("size"));
+
+                            FDateCreatedList.add(getDateHelper(jsonObject.getString("dateCreated")));
+
+                            isdirectoryList.add(jsonObject.getBoolean("isDirectory"));
+
+
+
                             if (i == response.length() - 1) {
                                 afterLoadingdone();
                             }
@@ -183,5 +180,14 @@ public class ExplorerView extends BaseActivity{
         scroll.addView(image);
 
     }
+    public void arrayToCard(String a[],String b[],String c[],String d[],RecyclerView m){
+
+            CardAdapter card = new CardAdapter(getApplicationContext(),a,b,c,d,a.length);
+            LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+            m.setLayoutManager(mLayoutManager);
+            m.setAdapter(card);
+
+    }
+
 
 }

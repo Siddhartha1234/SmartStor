@@ -1,24 +1,29 @@
 package com.example.hp.smartstor.CloudFileExplorer;
 
+import android.content.Context;
+
 import com.example.hp.smartstor.MainActivity;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by hp on 5/28/2016.
  */
 
-public class ShowFileList extends MainActivity {}
-/*    Context context;
+public class ShowFileList extends MainActivity {
+    Context context;
     String url;
     String[] music1={".Mp3",".Wav"}, movie1={".Mov",".Mp4",".Flv",".Avi",".3gp",".Mpeg"},picture1={".Png",".Jpeg",".Jpg",".Gif",".Ico"},
              document1={".Css",".Csv",".Doc",".Docx",".Html",".Jar",".Js",".Pdf",".Php",".Ppt",".Txt",".Dwg"},
              compressed1={".7z",".Rar",".Tar",".Gz",".Zip"};
-    List music=Arrays.asList(music1);
+    List music= Arrays.asList(music1);
     List movie=Arrays.asList(movie1);
     List picture=Arrays.asList(picture1);
     List document=Arrays.asList(document1);
     List compressed=Arrays.asList(compressed1);
 
-    ShowFileList(Context context, String URL)
+   /* ShowFileList(Context context, String URL)
     {
         this.context=context;
         getRootFromURL(URL);
@@ -97,7 +102,7 @@ public class ShowFileList extends MainActivity {}
      }
         return OList;
     }
-
+*/
     public String matchThumbnail(String ext)
     {
         String DrawableExt="a"+ext.substring(1).toLowerCase();
@@ -122,4 +127,3 @@ public class ShowFileList extends MainActivity {}
     }
 
 }
-*/
