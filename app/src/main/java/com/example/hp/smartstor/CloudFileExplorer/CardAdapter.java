@@ -1,8 +1,6 @@
 package com.example.hp.smartstor.CloudFileExplorer;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,41 +12,21 @@ import com.example.hp.smartstor.CloudMusicManager.ListItem;
 import com.example.hp.smartstor.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * Created by hp on 5/31/2016.
  */
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
-    String[] music1={".Mp3",".Wav"}, movie1={".Mov",".Mp4",".Flv",".Avi",".3gp",".Mpeg"},picture1={".Png",".Jpeg",".Jpg",".Gif",".Ico"},
-            document1={".Css",".Csv",".Doc",".Docx",".Html",".Jar",".Js",".Pdf",".Php",".Ppt",".Txt",".Dwg"},
-            compressed1={".7z",".Rar",".Tar",".Gz",".Zip"};
-    List music= Arrays.asList(music1);
-    List movie=Arrays.asList(movie1);
-    List picture=Arrays.asList(picture1);
-    List document=Arrays.asList(document1);
-    List compressed=Arrays.asList(compressed1);
+
     List<ListItem> items;
     Context context;
-    public CardAdapter(Context context,String a[],String b[],String c[],String d[],int e){
+    public CardAdapter(Context context,ArrayList<ListItem> item){
         super();
         this.context=context;
         items = new ArrayList<ListItem>();
+        this.items = item;
 
-        for(int i = 0; i < e;i++ ) {
-            String thumbnail = matchThumbnail(d[i]);
-            int extId = getResourceId(context,thumbnail,"mipmap",context.getPackageName());
-            String theme = getFiletheme(d[i]);
-            int themeId = getResourceId(context,theme,"mipmap",context.getPackageName());
-            Bitmap extimage = BitmapFactory.decodeResource(context.getResources(), extId);
-            Bitmap filetheme= BitmapFactory.decodeResource(context.getResources(),themeId);
-            String filename = a[i];
-            String filesize = b[i];
-            String date = c[i];
-            ListItem test = new ListItem(extimage, filetheme, filename, filesize, date);
-            items.add(test);
-        }
 
     }
 
@@ -93,35 +71,5 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
         }
     }
-    public  int getResourceId(Context context,String pVariableName, String pResourcename, String pPackageName)
-    {
-        try {
-            return context.getResources().getIdentifier(pVariableName, pResourcename, pPackageName);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
-        }
-    }
-    public String matchThumbnail(String ext)
-    {
-        String DrawableExt="a"+ext.substring(1).toLowerCase();
-        return DrawableExt;
-    }
-    public String getFiletheme(String x)
-    {
-        if(music.contains(x))
-            return "music";
-        else if(movie.contains(x))
-            return "video";
-        else if(picture.contains(x))
-            return "image";
-        else if(document.contains(x))
-            return "docs";
-        else if(compressed.contains(x))
-            return "compressed";
-        else
-            return "harddisk";
 
-
-    }
 }

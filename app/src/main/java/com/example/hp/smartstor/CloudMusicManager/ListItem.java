@@ -11,13 +11,15 @@ public class ListItem {
     private String fileName;
     private String fileSize;
     private String date;
+    private Boolean isDirectory;
 
-    public ListItem(Bitmap extImage, Bitmap fileTheme, String fileName,String fileSize, String date) {
+    public ListItem(Bitmap extImage, Bitmap fileTheme, String fileName,String fileSize, String date,Boolean isDirectory) {
         this.extImage = extImage;
         this.fileTheme = fileTheme;
         this.fileName = fileName;
         this.fileSize = fileSize;
         this.date = date;
+        this.isDirectory = isDirectory;
     }
 
     public Bitmap getExtImage() {
@@ -52,6 +54,8 @@ public class ListItem {
 
     public void setDate(String date){this.date = date;}
 
+    public Boolean getIsDirectory(){return isDirectory;}
 
+    public void setIsDirectory(Boolean isDirectory){this.isDirectory = isDirectory;}
 
 }
