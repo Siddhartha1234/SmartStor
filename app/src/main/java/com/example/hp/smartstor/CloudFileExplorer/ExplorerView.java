@@ -66,6 +66,7 @@ public class ExplorerView extends BaseActivity{
         //arrayToCard(fNameArray,fSizeArray,fDateArray,fExtArray,mRecyclerView);
         addFolderToPanel("c:");
         addFolderToPanel("SmartStor");
+        card = new CardAdapter(getApplicationContext());
     }
 
     @Override
@@ -106,14 +107,15 @@ public class ExplorerView extends BaseActivity{
                     JSONArray response = new JSONArray(responseString);
                     Log.i("size", String.valueOf(response.length()));
                     for (int i = 0; i < response.length(); i++) {
-
+                        String filename="err";
                         JSONObject jsonObject = response.getJSONObject(i);
                         {
+
                             String fname = (getFilenamefrompath(jsonObject.getString("path")));
                             if (fname != "err") {
                                 /*TODO add fname to Listitem's new object here */
                                 Fnames.add(fname);
-                                String filename = fname;
+                                filename = fname;
 
                             }
                             Fextensions.add(jsonObject.getString("Ext"));
@@ -139,8 +141,8 @@ public class ExplorerView extends BaseActivity{
                             int ThemeId = getResourceId(getApplicationContext(),theme,"mipmap",getApplicationContext().getPackageName());
                             Bitmap extimage = BitmapFactory.decodeResource(getApplicationContext().getResources(), extId);
                             Bitmap filetheme= BitmapFactory.decodeResource(getApplicationContext().getResources(),ThemeId);
-                            ListItem test = new ListItem(extimage,filetheme,fname,fSize,fDate,isDirectory);
-                            items.add(test);
+                            ListItem test = new ListItem(extimage,filetheme,filename,fSize,fDate,isDirectory);
+                            card.items.add(test);
                             if (i == response.length() - 1) {
                                 afterLoadingdone();
                             }
@@ -148,7 +150,7 @@ public class ExplorerView extends BaseActivity{
                         }
 
                     }
-                    card = new CardAdapter(getApplicationContext(),items);
+                    ;
 
 
                 } catch (JSONException e) {

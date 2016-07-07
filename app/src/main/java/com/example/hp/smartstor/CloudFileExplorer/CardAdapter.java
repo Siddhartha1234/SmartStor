@@ -21,11 +21,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
     List<ListItem> items;
     Context context;
-    public CardAdapter(Context context,ArrayList<ListItem> item){
+    public CardAdapter(Context context){
         super();
         this.context=context;
         items = new ArrayList<ListItem>();
-        this.items = item;
+
 
 
     }
