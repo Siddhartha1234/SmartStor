@@ -20,11 +20,16 @@ import java.util.ArrayList;
  * Created by SahilYerawar on 07-07-2016.
  */
 public class FolderStructure {
+    serverdata mcallback;;
+    public static interface serverdata{
+        void traceback(Pair<Integer,String> foldername);
+    }
     private int state;
     ArrayList<Folder> folderArrayList;
     Context context;
     public FolderStructure(Context context){
         this.context = context;
+        mcallback=(serverdata)context;
         this.state = 0;
         this.folderArrayList=new ArrayList<>();
     }
@@ -63,7 +68,7 @@ public class FolderStructure {
 
             /*TODO add functionality of clicking button by removing it from the panel
             * removeButtonFromPanel(folder)*/
-                getDataFromServer(folder.getText().toString());
+              mcallback.traceback(getCurrentKey(folder.getText().toString()));
 
         }});
         ImageView image= new ImageView(context);

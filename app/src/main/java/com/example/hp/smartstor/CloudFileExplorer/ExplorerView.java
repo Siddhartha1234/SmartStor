@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -36,7 +37,7 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
-public class ExplorerView extends BaseActivity implements CardAdapter.Listen{
+public class ExplorerView extends BaseActivity implements CardAdapter.Listen,FolderStructure.serverdata{
 
     String[] music1={".mp3",".wav"}, movie1={".mov",".mp4",".flv",".avi",".3gp",".mpeg"},picture1={".png",".jpeg",".jpg",".gif",".ico"},
             document1={".css",".csv",".doc",".docx",".html",".jar",".js",".pdf",".php",".ppt",".txt",".dwg"},
@@ -69,6 +70,11 @@ public class ExplorerView extends BaseActivity implements CardAdapter.Listen{
         folderStructure.createnSetButtonID("root");
     }
     public void function(){
+
+    }
+
+    public void traceback(Pair<Integer,String> foldername){
+
 
     }
     @Override
