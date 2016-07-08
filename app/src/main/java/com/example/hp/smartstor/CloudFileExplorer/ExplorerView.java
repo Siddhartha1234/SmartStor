@@ -67,6 +67,7 @@ public class ExplorerView extends BaseActivity{
         addFolderToPanel("c:");
         addFolderToPanel("SmartStor");
         card = new CardAdapter(getApplicationContext());
+        mRecyclerView.setAdapter(card);
     }
 
     @Override
