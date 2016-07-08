@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.hp.smartstor.BaseActivity;
 import com.example.hp.smartstor.CloudMusicManager.ListItem;
@@ -35,18 +37,22 @@ import java.util.List;
 import cz.msebera.android.httpclient.Header;
 
 public class ExplorerView extends BaseActivity{
-    ArrayList<String> Fnames,Fextensions,FDateCreatedList,FSizeList =new ArrayList<>();
-    String[] music1={".Mp3",".Wav"}, movie1={".Mov",".Mp4",".Flv",".Avi",".3gp",".Mpeg"},picture1={".Png",".Jpeg",".Jpg",".Gif",".Ico"},
-            document1={".Css",".Csv",".Doc",".Docx",".Html",".Jar",".Js",".Pdf",".Php",".Ppt",".Txt",".Dwg"},
-            compressed1={".7z",".Rar",".Tar",".Gz",".Zip"};
+    ArrayList<String> Fnames=new ArrayList<>(),Fextensions=new ArrayList<>(),FDateCreatedList=new ArrayList<>(),FSizeList =new ArrayList<>();
+    String[] music1={".mp3",".wav"}, movie1={".mov",".mp4",".flv",".avi",".3gp",".mpeg"},picture1={".png",".jpeg",".jpg",".gif",".ico"},
+            document1={".css",".csv",".doc",".docx",".html",".jar",".js",".pdf",".php",".ppt",".txt",".dwg"},
+            compressed1={".7z",".rar",".rar",".gz",".zip"};
     List music= Arrays.asList(music1);
     List movie=Arrays.asList(movie1);
     List picture=Arrays.asList(picture1);
     List document=Arrays.asList(document1);
     List compressed=Arrays.asList(compressed1);
+
+
+
     ArrayList<Boolean> isdirectoryList =new ArrayList<>();
     clientFileExplorer client =new clientFileExplorer(rooturl);
     RecyclerView mRecyclerView;
+    LinearLayoutManager mLayoutManager;
     CardAdapter card;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,18 +62,15 @@ public class ExplorerView extends BaseActivity{
         hs.setHorizontalScrollBarEnabled(false);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
-
+        mLayoutManager=new LinearLayoutManager(getApplicationContext());
         mRecyclerView = (RecyclerView) findViewById(R.id.explorer_rview);
         mRecyclerView.setHasFixedSize(true);
-       /* String fNameArray[]={"Concrete Mathematics","Percy Jackson- the Last Olympian","Fahrenheit 451"};
-        String fSizeArray[]={"810kB","1.2MB","400kB"};
-        String fDateArray[]={"26-10-15","4-2-16","3-6-16"};
-        String fExtArray[]={".Pdf",".Docx",".Doc"};*/
-        //arrayToCard(fNameArray,fSizeArray,fDateArray,fExtArray,mRecyclerView);
+        mRecyclerView.setLayoutManager(mLayoutManager);
         addFolderToPanel("c:");
         addFolderToPanel("SmartStor");
         card = new CardAdapter(getApplicationContext());
         mRecyclerView.setAdapter(card);
+        getDataFromServer("root");
     }
 
     @Override
@@ -108,42 +111,53 @@ public class ExplorerView extends BaseActivity{
                     JSONArray response = new JSONArray(responseString);
                     Log.i("size", String.valueOf(response.length()));
                     for (int i = 0; i < response.length(); i++) {
-                        String filename="err";
+
+
                         JSONObject jsonObject = response.getJSONObject(i);
                         {
 
-                            String fname = (getFilenamefrompath(jsonObject.getString("path")));
-                            if (fname != "err") {
-                                /*TODO add fname to Listitem's new object here */
-                                Fnames.add(fname);
-                                filename = fname;
+                            Boolean isDirectory=jsonObject.getBoolean("IsDirectory");
+                            if(isDirectory) {
+                                isdirectoryList.add(true);
+                                String fname=jsonObject.getString("Name");
+                                //int extId = getResourceId(getApplicationContext(), , "mipmap", getApplicationContext().getPackageName());
+                                int ThemeId = getResourceId(getApplicationContext(),"folder", "mipmap", getApplicationContext().getPackageName());
+                              //  Bitmap extimage = BitmapFactory.decodeResource(getApplicationContext().getResources(), extId);
+                                Bitmap filetheme = BitmapFactory.decodeResource(getApplicationContext().getResources(), ThemeId);
+                                ListItem test = new ListItem( filetheme, fname, false);
+                                card.items.add(test);
+
 
                             }
-                            Fextensions.add(jsonObject.getString("Ext"));
+                            else {
+                                String fname = (jsonObject.getString("Name"));
+
+                                /*TODO add fname to Listitem's new object here */
+                                Fnames.add(fname);
+
+                                Fextensions.add(jsonObject.getString("Ext"));
                             /*TODO add extension to Listitem's new object here */
-                            String fExt = jsonObject.getString("Ext");
+                                String fExt = jsonObject.getString("Ext");
 
-                            FSizeList.add(jsonObject.getString("size"));
+                                FSizeList.add(jsonObject.getString("Size"));
                             /*TODO add size to Listitem's new object here */
-                            String fSize = jsonObject.getString("Size");
+                                String fSize = jsonObject.getString("Size");
 
-                            FDateCreatedList.add(getDateHelper(jsonObject.getString("dateCreated")));
+                                FDateCreatedList.add(getDateHelper(jsonObject.getString("DateCreated")));
                             /*TODO add dateCreated to Listitem's new object here */
-                            String fDate = jsonObject.getString("dateCreated");
+                                String fDate = getDateHelper(jsonObject.getString("DateCreated"));
 
-                            isdirectoryList.add(jsonObject.getBoolean("isDirectory"));
-                            /*TODO add isDirectory to Listitem's new object here */
-                            Boolean isDirectory = jsonObject.getBoolean("isDirectory");
 
                             /*TODO adapter.items.add(new object)*/
-                            String tnail = matchThumbnail(fExt);
-                            int extId = getResourceId(getApplicationContext(),tnail,"mipmap",getApplicationContext().getPackageName());
-                            String theme = getFiletheme(fExt);
-                            int ThemeId = getResourceId(getApplicationContext(),theme,"mipmap",getApplicationContext().getPackageName());
-                            Bitmap extimage = BitmapFactory.decodeResource(getApplicationContext().getResources(), extId);
-                            Bitmap filetheme= BitmapFactory.decodeResource(getApplicationContext().getResources(),ThemeId);
-                            ListItem test = new ListItem(extimage,filetheme,filename,fSize,fDate,isDirectory);
-                            card.items.add(test);
+                                String tnail = matchThumbnail(fExt);
+                                int extId = getResourceId(getApplicationContext(), tnail, "mipmap", getApplicationContext().getPackageName());
+                                String theme = getFiletheme(fExt);
+                                int ThemeId = getResourceId(getApplicationContext(), theme, "mipmap", getApplicationContext().getPackageName());
+                                Bitmap extimage = BitmapFactory.decodeResource(getApplicationContext().getResources(), extId);
+                                Bitmap filetheme = BitmapFactory.decodeResource(getApplicationContext().getResources(), ThemeId);
+                                ListItem test = new ListItem(extimage, filetheme, fname, fSize, fDate, false);
+                                card.items.add(test);
+                            }
                             if (i == response.length() - 1) {
                                 afterLoadingdone();
                             }
@@ -164,7 +178,8 @@ public class ExplorerView extends BaseActivity{
 
     public void afterLoadingdone(){
         /*TODO add notifydatasetChanged here () as the above method is an Asynchronous(multithread) method so works on callbacks*/
-         card.notifyDataSetChanged();
+        card.notifyDataSetChanged();
+        Toast.makeText(getApplicationContext(),"Completed sync",Toast.LENGTH_LONG).show();
 
     }
     public String getDateHelper(String x){
@@ -221,14 +236,7 @@ public class ExplorerView extends BaseActivity{
         scroll.addView(image);
 
     }
-   /* public void arrayToCard(String a[],String b[],String c[],String d[],RecyclerView m){
 
-            CardAdapter card = new CardAdapter(getApplicationContext(),a,b,c,d,a.length);
-            LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-            m.setLayoutManager(mLayoutManager);
-            m.setAdapter(card);
-
-    }*/
     public  int getResourceId(Context context, String pVariableName, String pResourcename, String pPackageName)
     {
         try {

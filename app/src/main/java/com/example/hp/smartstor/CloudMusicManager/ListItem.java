@@ -21,6 +21,11 @@ public class ListItem {
         this.date = date;
         this.isDirectory = isDirectory;
     }
+    public ListItem(Bitmap fileTheme ,String fileName ,Boolean isDirectory){
+        this.fileTheme=fileTheme;
+        this.fileName=fileName;
+        this.isDirectory=isDirectory;
+    }
 
     public Bitmap getExtImage() {
         return extImage;

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.support.v4.util.Pair;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -17,44 +18,39 @@ import java.util.ArrayList;
 /**
  * Created by SahilYerawar on 07-07-2016.
  */
-public class FolderStructure extends Activity{
+public class FolderStructure {
     private int state;
-    private ArrayList<String> fName;
-    private ArrayList<String> fSize;
-    private  ArrayList<String> fDate;
-    private ArrayList<String> fExt;
-    private  ArrayList<Boolean> directory;
+    ArrayList<Folder> folderArrayList;
     Context context;
     public FolderStructure(Context context){
-    this.context = context;
+        this.context = context;
         this.state = 0;
+        this.folderArrayList=new ArrayList<>();
 }
 
 
-    public void creatensetButtonID(){
-        Button B = new Button(context);
-        B.setId(state);
-
-    }
     public void popButtonTillState(){
 
     }
-    public set<int,String> getCurrentKey(){
 
+    public Pair<Integer,String> getCurrentKey(int state,String name){
+
+        return Pair.create(state,name);
     }
 
-    public void addFolderToPanel(String folder_name, int state){
+    public void createnSetButtonID(String folder_name, int state){
         final Button folder = new Button(context);
         folder.setText(folder_name);
         folder.setTypeface(null, Typeface.BOLD);
         folder.setGravity(Gravity.CENTER);
+        folder.setId(state);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            folder.setBackgroundColor(getResources().getColor(R.color.light_grey,getTheme()));
-            folder.setTextColor(getResources().getColor(R.color.black,getTheme()));
+            folder.setBackgroundColor(context.getResources().getColor(R.color.light_grey,context.getTheme()));
+            folder.setTextColor(context.getResources().getColor(R.color.black,context.getTheme()));
         }
         else{
-            folder.setBackgroundColor(getResources().getColor(R.color.light_grey));
-            folder.setTextColor(getResources().getColor(R.color.black));
+            folder.setBackgroundColor(context.getResources().getColor(R.color.light_grey));
+            folder.setTextColor(context.getResources().getColor(R.color.black));
         }
 
         folder.setOnClickListener(new View.OnClickListener(){public void onClick(View view){
@@ -63,16 +59,16 @@ public class FolderStructure extends Activity{
             * removeButtonFromPanel(folder)*/
 
         }});
-        ImageView image= new ImageView(getApplicationContext());
+        ImageView image= new ImageView(context);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            image.setImageDrawable(getApplicationContext().getResources().getDrawable(R.drawable.ic_keyboard_arrow_right_black_24dp,getApplicationContext().getTheme()));
+            image.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_keyboard_arrow_right_black_24dp,context.getTheme()));
         } else {
-            image.setImageDrawable(getApplicationContext().getResources().getDrawable(R.drawable.ic_keyboard_arrow_right_black_24dp));
+            image.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_keyboard_arrow_right_black_24dp));
         }
         LinearLayout.LayoutParams buttonLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
         image.setAdjustViewBounds(true);
-        LinearLayout scroll = (LinearLayout) findViewById(R.id.toolLinear);
+        LinearLayout scroll = (LinearLayout)((Activity)context).findViewById(R.id.toolLinear);
         scroll.addView(folder);
         scroll.addView(image);
 

@@ -51,7 +51,7 @@ public class MusicActivity extends BaseActivity {
 
 
     }
-    public void ListdatafromJSON()
+   /* public void ListdatafromJSON()
     {
         progress.show();
         clientMusic clientMusic=new clientMusic(musicCardAdapter.url);
@@ -107,7 +107,7 @@ public class MusicActivity extends BaseActivity {
         else
             return "err";
 
-    }
+    }*/
 
 
     @Override
