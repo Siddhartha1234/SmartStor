@@ -2,6 +2,7 @@ package com.example.hp.smartstor.CloudFileExplorer;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v4.util.Pair;
@@ -26,13 +27,15 @@ public class FolderStructure {
         this.context = context;
         this.state = 0;
         this.folderArrayList=new ArrayList<>();
-}
+    }
 
 
     public void popButtonTillState(){
 
     }
-
+    public Folder getFolderDataFromKey(Pair<Integer,String> key){
+        /*TODO right now */
+    }
     public Pair<Integer,String> getCurrentKey(String name){
 
         return Pair.create(state,name);
@@ -44,7 +47,8 @@ public class FolderStructure {
         folder.setTypeface(null, Typeface.BOLD);
         folder.setGravity(Gravity.CENTER);
         folder.setId(state);
-        this.state+=1;
+        if(!folder_name.equals("root"))
+            this.state+=1;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             folder.setBackgroundColor(context.getResources().getColor(R.color.light_grey,context.getTheme()));
             folder.setTextColor(context.getResources().getColor(R.color.black,context.getTheme()));

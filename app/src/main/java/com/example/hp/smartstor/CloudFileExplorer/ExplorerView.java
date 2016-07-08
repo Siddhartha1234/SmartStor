@@ -37,7 +37,7 @@ import java.util.List;
 import cz.msebera.android.httpclient.Header;
 
 public class ExplorerView extends BaseActivity{
-    ArrayList<String> Fnames=new ArrayList<>(),Fextensions=new ArrayList<>(),FDateCreatedList=new ArrayList<>(),FSizeList =new ArrayList<>();
+
     String[] music1={".mp3",".wav"}, movie1={".mov",".mp4",".flv",".avi",".3gp",".mpeg"},picture1={".png",".jpeg",".jpg",".gif",".ico"},
             document1={".css",".csv",".doc",".docx",".html",".jar",".js",".pdf",".php",".ppt",".txt",".dwg"},
             compressed1={".7z",".rar",".rar",".gz",".zip"};
@@ -46,14 +46,11 @@ public class ExplorerView extends BaseActivity{
     List picture=Arrays.asList(picture1);
     List document=Arrays.asList(document1);
     List compressed=Arrays.asList(compressed1);
-
-
-
-    ArrayList<Boolean> isdirectoryList =new ArrayList<>();
     clientFileExplorer client =new clientFileExplorer(rooturl);
     RecyclerView mRecyclerView;
     LinearLayoutManager mLayoutManager;
     CardAdapter card;
+    FolderStructure folderStructure=new FolderStructure(getApplicationContext());
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,11 +63,10 @@ public class ExplorerView extends BaseActivity{
         mRecyclerView = (RecyclerView) findViewById(R.id.explorer_rview);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        addFolderToPanel("c:");
-        addFolderToPanel("SmartStor");
         card = new CardAdapter(getApplicationContext());
         mRecyclerView.setAdapter(card);
         getDataFromServer("root");
+        folderStructure.createnSetButtonID("root");
     }
 
     @Override
@@ -108,10 +104,11 @@ public class ExplorerView extends BaseActivity{
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
                 try {
+                    ArrayList<String> Fnames=new ArrayList<>(),Fextensions=new ArrayList<>(),FDateCreatedList=new ArrayList<>(),FSizeList =new ArrayList<>();
+                    ArrayList<Boolean> isdirectoryList =new ArrayList<>();
                     JSONArray response = new JSONArray(responseString);
                     Log.i("size", String.valueOf(response.length()));
                     for (int i = 0; i < response.length(); i++) {
-
 
                         JSONObject jsonObject = response.getJSONObject(i);
                         {
@@ -131,24 +128,13 @@ public class ExplorerView extends BaseActivity{
                             }
                             else {
                                 String fname = (jsonObject.getString("Name"));
-
-                                /*TODO add fname to Listitem's new object here */
                                 Fnames.add(fname);
-
                                 Fextensions.add(jsonObject.getString("Ext"));
-                            /*TODO add extension to Listitem's new object here */
                                 String fExt = jsonObject.getString("Ext");
-
                                 FSizeList.add(jsonObject.getString("Size"));
-                            /*TODO add size to Listitem's new object here */
                                 String fSize = jsonObject.getString("Size");
-
                                 FDateCreatedList.add(getDateHelper(jsonObject.getString("DateCreated")));
-                            /*TODO add dateCreated to Listitem's new object here */
                                 String fDate = getDateHelper(jsonObject.getString("DateCreated"));
-
-
-                            /*TODO adapter.items.add(new object)*/
                                 String tnail = matchThumbnail(fExt);
                                 int extId = getResourceId(getApplicationContext(), tnail, "mipmap", getApplicationContext().getPackageName());
                                 String theme = getFiletheme(fExt);
@@ -159,6 +145,7 @@ public class ExplorerView extends BaseActivity{
                                 card.items.add(test);
                             }
                             if (i == response.length() - 1) {
+                                folderStructure.folderArrayList.add(new Folder(isdirectoryList,FDateCreatedList,Fextensions,Fnames,FSizeList));
                                 afterLoadingdone();
                             }
 
