@@ -23,7 +23,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>  {
     Context context;
     Listen mcallback;
     public static  interface Listen{
-        void function();
+        void function(String s);
     }
     public CardAdapter(Context context){
         super();
@@ -33,6 +33,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>  {
 
 
     }
+    public List<ListItem> getItems(){return this.items;}
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -79,7 +81,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>  {
 
         @Override
         public void onClick(View v){
-            mcallback.function();
+            mcallback.function(fnameview.getText().toString());
 
         }
 

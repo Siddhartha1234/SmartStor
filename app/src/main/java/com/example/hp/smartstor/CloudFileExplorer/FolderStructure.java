@@ -2,7 +2,6 @@ package com.example.hp.smartstor.CloudFileExplorer;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v4.util.Pair;
@@ -33,7 +32,7 @@ public class FolderStructure {
         this.state = 0;
         this.folderArrayList=new ArrayList<>();
     }
-
+    public ArrayList<Folder> getArrayList(){return this.folderArrayList;}
 
     public void popButtonTillState(){
 

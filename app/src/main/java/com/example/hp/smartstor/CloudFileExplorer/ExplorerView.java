@@ -53,7 +53,7 @@ public class ExplorerView extends BaseActivity implements CardAdapter.Listen,Fol
     CardAdapter card;
     FolderStructure folderStructure=new FolderStructure(getApplicationContext());
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explorer_view);
         HorizontalScrollView hs =(HorizontalScrollView)findViewById(R.id.hscroll);
@@ -69,7 +69,20 @@ public class ExplorerView extends BaseActivity implements CardAdapter.Listen,Fol
         getDataFromServer("root");
         folderStructure.createnSetButtonID("root");
     }
-    public void function(){
+    public void function(String s){
+        /*CardAdapter Card1 = new CardAdapter();
+        setContentView(R.layout.activity_explorer_view);
+        LinearLayoutManager lManager = new LinearLayoutManager(getApplicationContext());
+        RecyclerView recycle =(RecyclerView)findViewById(R.id.explorer_rview);
+        recycle.setHasFixedSize(true);
+        recycle.setLayoutManager(lManager);
+        recycle.setAdapter(Card1);*/
+        RecyclerView recycle = new RecyclerView(getApplicationContext());
+        for(int i = 0; i < card.items.size();i++){
+            card.items.remove(card.items.size()-1);
+        }
+        getDataFromServer(s);
+
 
     }
 
