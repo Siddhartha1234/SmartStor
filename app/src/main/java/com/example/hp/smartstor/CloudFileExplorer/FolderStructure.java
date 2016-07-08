@@ -33,17 +33,18 @@ public class FolderStructure {
 
     }
 
-    public Pair<Integer,String> getCurrentKey(int state,String name){
+    public Pair<Integer,String> getCurrentKey(String name){
 
         return Pair.create(state,name);
     }
 
-    public void createnSetButtonID(String folder_name, int state){
+    public void createnSetButtonID(String folder_name){
         final Button folder = new Button(context);
         folder.setText(folder_name);
         folder.setTypeface(null, Typeface.BOLD);
         folder.setGravity(Gravity.CENTER);
         folder.setId(state);
+        this.state+=1;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             folder.setBackgroundColor(context.getResources().getColor(R.color.light_grey,context.getTheme()));
             folder.setTextColor(context.getResources().getColor(R.color.black,context.getTheme()));
