@@ -36,7 +36,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>  {
                 .inflate(R.layout.filerow, parent, false);
         ViewHolder viewHolder = new ViewHolder(v,new CardAdapter.ViewHolder.Listen(){
             public void function(){
-                if()//TODO Here's the problem appearing
+               // if()//TODO Here's the problem appearing
             }
         });
         return viewHolder;
@@ -83,8 +83,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>  {
 
         }
 
-        public static interface Listen{
-            public void function();
+        public static  interface Listen{
+             void function();
         }
     }
 
