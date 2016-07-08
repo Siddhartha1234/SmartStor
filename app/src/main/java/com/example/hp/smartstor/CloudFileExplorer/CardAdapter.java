@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by hp on 5/31/2016.
  */
-public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
+public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>  {
 
     List<ListItem> items;
     Context context;
@@ -34,7 +34,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.filerow, parent, false);
-        ViewHolder viewHolder = new ViewHolder(v);
+        ViewHolder viewHolder = new ViewHolder(v,new CardAdapter.ViewHolder.Listen(){
+            public void function(){
+                if()//TODO Here's the problem appearing
+            }
+        });
         return viewHolder;
     }
 
@@ -53,22 +57,34 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         return items.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public ImageView extview;
         public ImageView fileview;
         public TextView fnameview;
         public TextView fsizeview;
         public TextView fdateview;
+        public Listen mListener;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, Listen listener) {
             super(itemView);
-
+            mListener = listener;
             extview= (ImageView) itemView.findViewById(R.id.file_ext);
             fileview = (ImageView) itemView.findViewById(R.id.filetheme);
             fnameview = (TextView) itemView.findViewById(R.id.file_name);
             fsizeview = (TextView) itemView.findViewById(R.id.filesize);
             fdateview = (TextView) itemView.findViewById(R.id.date_created);
 
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v){
+            mListener.function();
+
+        }
+
+        public static interface Listen{
+            public void function();
         }
     }
 

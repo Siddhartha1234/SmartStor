@@ -62,6 +62,7 @@ public class FolderStructure {
 
             /*TODO add functionality of clicking button by removing it from the panel
             * removeButtonFromPanel(folder)*/
+            getDataFromServer(folder.getText().toString())
 
         }});
         ImageView image= new ImageView(context);
