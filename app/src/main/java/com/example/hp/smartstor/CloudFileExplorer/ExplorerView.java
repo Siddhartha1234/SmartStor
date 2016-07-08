@@ -36,7 +36,7 @@ import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 
-public class ExplorerView extends BaseActivity{
+public class ExplorerView extends BaseActivity implements CardAdapter.Listen{
 
     String[] music1={".mp3",".wav"}, movie1={".mov",".mp4",".flv",".avi",".3gp",".mpeg"},picture1={".png",".jpeg",".jpg",".gif",".ico"},
             document1={".css",".csv",".doc",".docx",".html",".jar",".js",".pdf",".php",".ppt",".txt",".dwg"},
@@ -68,7 +68,9 @@ public class ExplorerView extends BaseActivity{
         getDataFromServer("root");
         folderStructure.createnSetButtonID("root");
     }
+    public void function(){
 
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

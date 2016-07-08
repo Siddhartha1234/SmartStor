@@ -21,6 +21,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>  {
 
     List<ListItem> items;
     Context context;
+    Listen mcallback;
+    public static  interface Listen{
+        void function();
+    }
     public CardAdapter(Context context){
         super();
         this.context=context;
@@ -34,11 +38,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>  {
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.filerow, parent, false);
-        ViewHolder viewHolder = new ViewHolder(v,new CardAdapter.ViewHolder.Listen(){
-            public void function(){
-               // if()//TODO Here's the problem appearing
-            }
-        });
+        ViewHolder viewHolder = new ViewHolder(v);
+        mcallback=(Listen)parent.getContext();
         return viewHolder;
     }
 
@@ -63,11 +64,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>  {
         public TextView fnameview;
         public TextView fsizeview;
         public TextView fdateview;
-        public Listen mListener;
 
-        public ViewHolder(View itemView, Listen listener) {
+
+        public ViewHolder(View itemView) {
             super(itemView);
-            mListener = listener;
             extview= (ImageView) itemView.findViewById(R.id.file_ext);
             fileview = (ImageView) itemView.findViewById(R.id.filetheme);
             fnameview = (TextView) itemView.findViewById(R.id.file_name);
@@ -79,13 +79,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder>  {
 
         @Override
         public void onClick(View v){
-            mListener.function();
+            mcallback.function();
 
         }
 
-        public static  interface Listen{
-             void function();
-        }
+
     }
 
 }
